@@ -21,6 +21,14 @@ public class LessonController {
     @GetMapping("/lessons/{id}")
     public Optional<Lesson> read(@PathVariable Long id) { return this.repository.findById(id); }
 
+    @PatchMapping("/lessons/{id}")
+    public Lesson patch(@RequestBody Lesson lessonInput, @PathVariable Long id) {
+        Lesson lesson = this.repository.findById(id).get();
+        lesson.setTitle(lessonInput.getTitle());
+        lesson.setDeliveredOn(lessonInput.getDeliveredOn());
+        return this.repository.save(lesson);
+    }
+
     @DeleteMapping("/lessons/{id}")
     public void delete(@PathVariable Long id ) {
         this.repository.deleteById(id);

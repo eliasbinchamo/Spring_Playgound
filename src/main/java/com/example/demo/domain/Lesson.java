@@ -12,11 +12,13 @@ public class Lesson {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String title;
+    private String deliveredOn;
 
     public Lesson(){};
 
     public Lesson(String title){
         this.title = title;
+        this.deliveredOn = deliveredOn;
     }
 
     public Long getId() {
@@ -31,9 +33,17 @@ public class Lesson {
         this.title = title;
     }
 
+    public String getDeliveredOn() {
+        return deliveredOn;
+    }
+
+    public void setDeliveredOn(String deliveredOn) {
+        this.deliveredOn = deliveredOn;
+    }
+
     @Override
     public String toString() {
-        return "Lesson [ id=" + id + ", title=" + title + "]";
+        return "Lesson [ id=" + id + ", title=" + title + ", deliveredOn=" + deliveredOn  +" ]";
     }
 }
 
