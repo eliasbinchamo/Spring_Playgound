@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
 @Entity
 public class Lesson {
@@ -12,13 +13,13 @@ public class Lesson {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String title;
-    private String deliveredOn;
+    private Date deliveredOn;
 
-    public Lesson(){};
+    public Lesson(){}
 
-    public Lesson(String title){
+    public Lesson(String title, String deliveredOn){
         this.title = title;
-        this.deliveredOn = deliveredOn;
+        this.deliveredOn = Date.valueOf(deliveredOn);
     }
 
     public Long getId() {
@@ -33,12 +34,12 @@ public class Lesson {
         this.title = title;
     }
 
-    public String getDeliveredOn() {
+    public Date getDeliveredOn() {
         return deliveredOn;
     }
 
     public void setDeliveredOn(String deliveredOn) {
-        this.deliveredOn = deliveredOn;
+        this.deliveredOn = Date.valueOf(deliveredOn);
     }
 
     @Override
