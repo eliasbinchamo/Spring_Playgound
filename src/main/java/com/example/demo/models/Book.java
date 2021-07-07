@@ -24,6 +24,9 @@ public class Book {
         this.creationDate = new Date();
     }
 
+    public Book() {
+    }
+
     public String getBookId() {
         return bookId;
     }

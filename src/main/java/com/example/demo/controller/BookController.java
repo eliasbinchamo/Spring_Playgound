@@ -18,8 +18,8 @@ public class BookController {
     }
 
     @GetMapping("")
-    public String book() {
-        return "Books Endpoint";
+    public Iterable<Book> book() {
+        return this.bookRepository.findAll();
     }
 
     @PostMapping("/book")
@@ -32,11 +32,16 @@ public class BookController {
         return this.bookRepository.findById(_id);
     }
 
-//    @PatchMapping("/book/{_id}")
-//    public Book updateBook(@PathVariable String _id, @RequestBody Book book ) {
-//        Book updateBook = this.bookRepository.findById(_id).get();
-//
-//    }
+    @PatchMapping("/book/{_id}")
+    public Book updateBook(@PathVariable String _id, @RequestBody Book book ) {
+        Book updateBook = this.bookRepository.findById(_id).get();
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPrice(book.getPrice());
+        updateBook.setLength(book.getLength());
+        updateBook.setTitle(book.getTitle());
+        this.bookRepository.save(updateBook);
+        return updateBook;
+    }
 
     @DeleteMapping("/book")
     public void deleteById(@RequestParam String _id){
