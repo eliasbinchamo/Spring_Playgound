@@ -35,43 +35,43 @@ public class BookControllerTest {
     @Mock
     BookRepository bookRepository;
 
-    @Test
-    public void booksTest() throws Exception {
-        this.mvc.perform(get("/books").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Books Endpoint"));
-    }
-
-    @Test
-    public void createBookTest() {
-
-        when(bookRepository.save(any(Book.class))).thenReturn( new Book("BookTitle0","Author0", 700, 150.00 ));
-
-        bookController = new BookController(bookRepository);
-        Book actual = bookController.createBook(new Book("BookTitle0","Author0", 700, 150.00 ));
-
-        assertThat(actual.getTitle()).isEqualTo("BookTitle0");
-        assertThat(actual.getAuthor()).isEqualTo("Author0");
-        assertThat(actual.getLength()).isEqualTo(700);
-        assertThat(actual.getPrice()).isEqualTo(150.00);
-
-    }
-
-    @Test
-    public void updateBookTest() {
-
-        when(bookRepository.findById("elias")).thenReturn(Optional.of(new Book("Original Title","Author0", 700, 150.00 )));
-
-        bookController = new BookController(bookRepository);
-        Optional<Book> original = bookController.getBook("elias");
-        Book actual = bookController.updateBook("elias",new Book("BookTitle0","Author0", 700, 150));
-
-
-        assertThat(actual.getTitle()).isEqualTo("BookTitle0");
-        assertThat(actual.getAuthor()).isEqualTo("Author0");
-        assertThat(actual.getLength()).isEqualTo(700);
-        assertThat(actual.getPrice()).isEqualTo(150.00);
-    }
+//    @Test
+//    public void booksTest() throws Exception {
+//        this.mvc.perform(get("/books").contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string("Books Endpoint"));
+//    }
+//
+//    @Test
+//    public void createBookTest() {
+//
+//        when(bookRepository.save(any(Book.class))).thenReturn( new Book("BookTitle0","Author0", 700, 150.00 ));
+//
+//        bookController = new BookController(bookRepository);
+//        Book actual = bookController.createBook(new Book("BookTitle0","Author0", 700, 150.00 ));
+//
+//        assertThat(actual.getTitle()).isEqualTo("BookTitle0");
+//        assertThat(actual.getAuthor()).isEqualTo("Author0");
+//        assertThat(actual.getLength()).isEqualTo(700);
+//        assertThat(actual.getPrice()).isEqualTo(150.00);
+//
+//    }
+//
+//    @Test
+//    public void updateBookTest() {
+//
+//        when(bookRepository.findById("elias")).thenReturn(Optional.of(new Book("Original Title","Author0", 700, 150.00 )));
+//
+//        bookController = new BookController(bookRepository);
+//        Optional<Book> original = bookController.getBook("elias");
+//        Book actual = bookController.updateBook("elias",new Book("BookTitle0","Author0", 700, 150));
+//
+//
+//        assertThat(actual.getTitle()).isEqualTo("BookTitle0");
+//        assertThat(actual.getAuthor()).isEqualTo("Author0");
+//        assertThat(actual.getLength()).isEqualTo(700);
+//        assertThat(actual.getPrice()).isEqualTo(150.00);
+//    }
 
 //    @Test
 //    public void readBookTest() {
